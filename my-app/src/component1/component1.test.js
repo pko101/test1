@@ -11,15 +11,21 @@ describe('Component1', () => {
         const component = screen.getByRole("heading", {
 
             name: /this is/i
-        });
-        console.debug(component.textContent);
+        });     
         const link = screen.getByRole("link", {
             name: /This is/
         });
-        expect(link).toHaveAttribute('href',"https://example.com");
-
-        const getElement=screen.getByRole("listitem",{
-            name:/Unordered/i
+        expect(link).toHaveAttribute('href',"https://example.com");      
+        expect(link).toHaveTextContent("This is a link");
+        const listElements=screen.getAllByRole("listitem");        
+        const ulELement=listElements.find(a=>a.tagName==="LI");          
+        expect(ulELement).not.toBeUndefined();
+       
+    });
+    test("text input", () => {
+        render(<Component1></Component1>);
+        screen.getByRole("textbox",{
+            
         })
     });
 });
